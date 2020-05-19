@@ -290,8 +290,10 @@ lines(1:8, RF_sil_width_4)
 # 
 # 
 # 
-plot(full_sil_width,col='dark green',lty=1,ylim=c(0,0.4),xlim=c(0,8), ylab="Silhouette Width", xlab="No of cluster" )
+plot(full_sil_width,col='dark green',lty=1,ylim=c(0.05,0.60),xlim=c(2,8), ylab="Silhouette Width", xlab="No of cluster" )
 lines(full_sil_width, col="dark green",lty=1)
+
+abline(h = 0.20, col="purple",lty=2)
 
 points(sil_width_6,col='red',pch="#")
 lines(sil_width_6, col="red",lty=1)
@@ -315,8 +317,7 @@ lines(RF_sil_width_4, col="black",lty=4)
 
 # Adding a legend inside box at the location (2,40) in graph coordinates.
 # Note that the order of plots are maintained in the vectors of attributes.
-legend(0,0.25,legend=c("Full data","PR Top 5","PR Top 4","PR Top 3","RF Top 5","RF Top 4","RF Top 3"), 
-       col=c("dark green","red","blue","dark red","yellow","green","black"),
-       pch=c("o","#","#","#","X","X","X"),lty=c(1,1,1,1,4,4,4),cex = 0.85)
-
+legend(2.1,0.59,legend=c("Full data","PR Top 5","PR Top 4","PR Top 3","RF Top 5","RF Top 4","RF Top 3","Reference"), 
+       col=c("dark green","red","blue","dark red","yellow","green","black","purple"),
+       pch=c("o","#","#","#","X","X","X",""),lty=c(1,1,1,1,4,4,4,2),cex = 0.85)
 

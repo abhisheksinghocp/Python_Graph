@@ -44,13 +44,13 @@ lines(1:8, full_sil_width)
 
 ##########
 
-tsne_obj <- Rtsne(gower_dist, is_distance = TRUE)
-tsne_data <- tsne_obj$Y %>%
-  data.frame() %>%
-  setNames(c("X", "Y")) %>%
-  mutate(cluster = factor(pam_fit$clustering))
-ggplot(aes(x = X, y = Y), data = tsne_data) +
-  geom_point(aes(color = cluster))
+# tsne_obj <- Rtsne(gower_dist, is_distance = TRUE)
+# tsne_data <- tsne_obj$Y %>%
+#   data.frame() %>%
+#   setNames(c("X", "Y")) %>%
+#   mutate(cluster = factor(pam_fit$clustering))
+# ggplot(aes(x = X, y = Y), data = tsne_data) +
+#   geom_point(aes(color = cluster))
 
 
 #####################
@@ -78,13 +78,13 @@ lines(1:8, sil_width_6)
 
 ##########
 
-tsne_obj <- Rtsne(gower_dist, is_distance = TRUE)
-tsne_data <- tsne_obj$Y %>%
-  data.frame() %>%
-  setNames(c("X", "Y")) %>%
-  mutate(cluster = factor(pam_fit$clustering))
-ggplot(aes(x = X, y = Y), data = tsne_data) +
-  geom_point(aes(color = cluster))
+# tsne_obj <- Rtsne(gower_dist, is_distance = TRUE)
+# tsne_data <- tsne_obj$Y %>%
+#   data.frame() %>%
+#   setNames(c("X", "Y")) %>%
+#   mutate(cluster = factor(pam_fit$clustering))
+# ggplot(aes(x = X, y = Y), data = tsne_data) +
+#   geom_point(aes(color = cluster))
 
 
 #####################
@@ -111,13 +111,13 @@ lines(1:8, sil_width_5)
 
 ##########
 
-tsne_obj <- Rtsne(gower_dist, is_distance = TRUE)
-tsne_data <- tsne_obj$Y %>%
-  data.frame() %>%
-  setNames(c("X", "Y")) %>%
-  mutate(cluster = factor(pam_fit$clustering))
-ggplot(aes(x = X, y = Y), data = tsne_data) +
-  geom_point(aes(color = cluster))
+# tsne_obj <- Rtsne(gower_dist, is_distance = TRUE)
+# tsne_data <- tsne_obj$Y %>%
+#   data.frame() %>%
+#   setNames(c("X", "Y")) %>%
+#   mutate(cluster = factor(pam_fit$clustering))
+# ggplot(aes(x = X, y = Y), data = tsne_data) +
+#   geom_point(aes(color = cluster))
 
 #####################
 # selected data set - 3
@@ -144,13 +144,13 @@ lines(1:8, sil_width_4)
 
 ##########
 
-tsne_obj <- Rtsne(gower_dist, is_distance = TRUE)
-tsne_data <- tsne_obj$Y %>%
-  data.frame() %>%
-  setNames(c("X", "Y")) %>%
-  mutate(cluster = factor(pam_fit$clustering))
-ggplot(aes(x = X, y = Y), data = tsne_data) +
-  geom_point(aes(color = cluster))
+# tsne_obj <- Rtsne(gower_dist, is_distance = TRUE)
+# tsne_data <- tsne_obj$Y %>%
+#   data.frame() %>%
+#   setNames(c("X", "Y")) %>%
+#   mutate(cluster = factor(pam_fit$clustering))
+# ggplot(aes(x = X, y = Y), data = tsne_data) +
+#   geom_point(aes(color = cluster))
 
 
 
@@ -280,10 +280,10 @@ lines(1:8, RF_sil_width_4)
 ############################################################################################################
 ############################################################################################################
 
-
-plot(full_sil_width ,col='dark green',xlim=c(2,8),ylim=c(0.19,0.38), ylab="Silhouette Width", xlab="No of cluster")
+plot(full_sil_width ,col='dark green',xlim=c(2,8),ylim=c(0.15,0.39), ylab="Silhouette Width", xlab="No of cluster")
 lines(full_sil_width, col="dark green",lty=1)
 
+abline(h = 0.20, col="purple",lty=2)
 
 points(sil_width_6,col='red',pch="#")
 lines(sil_width_6, col="red",lty=1)
@@ -307,34 +307,25 @@ lines(RF_sil_width_5, col="green",lty=4)
 #lines(RF_sil_width_4, col="black",lty=4)
 
 
+ legend(2,0.38,legend=c("Full data","PR Top 5","PR Top 4","RF Top 5","RF Top 4","Reference"), 
+        col=c("dark green","red","blue","yellow","green","purple"),
+        pch=c("o","#","#","X","X",""),lty=c(1,1,1,4,4,2),cex = 0.85)  #pch=c("o","#","X","+"), , ncol=1
+
 # Adding a legend inside box at the location (2,40) in graph coordinates.
 # Note that the order of plots are maintained in the vectors of attributes.
-legend(2,0.35,legend=c("Full data","PR Top 5","PR Top 4","RF Top 5","RF Top 4"), 
-       col=c("dark green","red","blue","yellow","green"),
-       pch=c("o","#","#","X","X"),lty=c(1,1,1,4,4),cex = 0.85)  #pch=c("o","#","X","+"), , ncol=1
+# legend(2,0.18,legend=c("Full data","PR Top 5","PR Top 4","RF Top 5","RF Top 4","Reference"), 
+#        col=c("dark green","red","blue","yellow","green","purple"),
+#        pch=c("o","#","#","X","X",""),lty=c(1,1,1,4,4,2),cex = 0.85)  #pch=c("o","#","X","+"), , ncol=1
+# 
+# legend(4,0.18,legend=c("Silhouette coefficients","Range [-1, 1]","Good cluster  + 0","Neutral cluster ~ 0 ","Bad cluster - 0","Benchmark coeff > 20"),
+#        pch=c(">","","","","",">"),
+#        col=c("yellow4","yellow4","yellow4","yellow4","yellow4","purple"),
+#        cex = 0.85)  #pch=c("o","#","X","+"), , ncol=1
 
-
-# legend(0,0.5,legend=c("Full data","PR Top 5","PR Top 4","PR Top 3","RF Top 5","RF Top 4","RF Top 3"), 
-#        col=c("dark green","red","blue","dark red","yellow","green","black"),
-#        pch=c("o","#","#","#","X","X","X"),lty=c(1,1,1,1,4,4,4),cex = 0.85)  #pch=c("o","#","X","+"), , ncol=1
-
-
-# 
-# plot(full_sil_width,col='dark green',lty=1,ylim=c(0.19,0.52), ylab="Silhouette Width", xlab="No of cluster" )
-# lines(full_sil_width, col="dark green",lty=1)
-# 
-# points(sil_width_6,col='red',pch="#")
-# lines(sil_width_6, col="red",lty=2)
-# 
-# points(sil_width_5,col='blue',pch="X")
-# lines(sil_width_5, col="blue",lty=3)
-# 
-# points(sil_width_4,col='dark red',pch="+")
-# lines(sil_width_4, col="dark red",lty=4)
-# 
-# 
-# # Adding a legend inside box at the location (2,40) in graph coordinates.
-# # Note that the order of plots are maintained in the vectors of attributes.
-# legend(1,0.5,legend=c("Full data","PR Top 5","PR Top 4","PR Top 3"), col=c("dark green","red","blue","dark red"),
-#        pch=c("o","#","X","+"),lty=c(1,2,3,4), ncol=1)
-# 
+full_sil_width
+sil_width_4
+sil_width_5
+sil_width_6
+RF_sil_width_4
+RF_sil_width_5
+RF_sil_width_6
