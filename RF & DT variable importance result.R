@@ -47,7 +47,7 @@ round(importance(fit.rf), 2)
 
 print('############################### Titanic RF result ###################')
 #varImp(fit.rf)
-#varImpPlot(fit.rf,type=2)
+varImpPlot(fit.rf,type=2)
 
 print('##################################################################')
 
@@ -62,10 +62,7 @@ base_model <- rpart(Survived ~ Pclass + Sib_Spou
                     ,parms = list(split = "gini") #gini,information
                     ,control = rpart.control(cp = 0))
 
-summary(base_model)
-#base_model
-
-
+base_model$variable.importance
 
 
 ###################################################################################################################################
@@ -112,7 +109,7 @@ base_model <- rpart(species ~ sepal_length + sepal_width + petal_length + petal_
                     ,parms = list(split = "gini") #gini,information
                     ,control = rpart.control(cp = 0))
 
-summary(base_model)
+base_model$variable.importance
 
 
 ###################################################################################################################################
@@ -159,7 +156,7 @@ base_model <- rpart(Classification ~ Age + BMI + Glucose + Insulin + HOMA + Lept
                     ,parms = list(split = "gini") #gini,information
                     ,control = rpart.control(cp = 0))
 
-summary(base_model)
+base_model$variable.importance
 
 ################################################################################################################################
 ################# Chess
@@ -307,7 +304,7 @@ base_model <- rpart(outcome ~ bkblk   +
                     ,parms = list(split = "gini") #gini,information
                     ,control = rpart.control(cp = 0))
 
-summary(base_model)
+base_model$variable.importance
 
 
 ###################################################################################################################################
@@ -370,7 +367,7 @@ base_model <- rpart(Result_of_Treatment ~ sex                  +
                     ,parms = list(split = "gini") #gini,information
                     ,control = rpart.control(cp = 0))
 
-summary(base_model)
+base_model$variable.importance
 
 
 ###################################################################################################################################
@@ -393,6 +390,13 @@ final_data_set$clouds_all_level               <- as.factor( final_data_set$cloud
 
 str(final_data_set)
 
+trainIndex <- createDataPartition(final_data_set$traffic_volume, p = .4, 
+                                  list = FALSE, 
+                                  times = 1)
+
+train<-final_data_set[trainIndex,]
+test<-final_data_set[-trainIndex,]
+final_data_set <- train
 ##############################################
 ########### Random Forest
 ##############################################
@@ -435,5 +439,5 @@ base_model <- rpart(traffic_volume ~ holiday                 +
                     ,parms = list(split = "gini") #gini,information
                     ,control = rpart.control(cp = 0))
 
-summary(base_model)
+base_model$variable.importance
 
